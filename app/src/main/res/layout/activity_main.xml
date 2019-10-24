@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <FrameLayout
+    <fragment
         android:id="@+id/frgColor"
-        android:name="com.example.fragment.FragmentColor"
+        android:name="com.example.fragment.FragmentRed"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_360sdp"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginRight="@dimen/_15sdp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_15sdp">
-    </FrameLayout>
+    </fragment>
     <Button
         android:id="@+id/btnrRed"
         android:layout_width="wrap_content"

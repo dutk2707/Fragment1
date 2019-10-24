@@ -13,46 +13,48 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnRed, btnGreen, btnBlue;
-    Fragment fragmentColor;
-    FrameLayout frameLayout;
+    Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentColor fragmentColor = new FragmentColor();
-        fragmentTransaction.add(R.id.frgColor, fragmentColor);
-        fragmentTransaction.commit();
     }
     public void initView(){
-        btnBlue = (Button) findViewById(R.id.btnBlue);
         btnGreen = (Button) findViewById(R.id.btnGreen);
+        btnBlue = (Button) findViewById(R.id.btnBlue);
         btnRed = (Button) findViewById(R.id.btnrRed);
-        frameLayout = (FrameLayout) findViewById(R.id.frgColor);
+        btnGreen.setOnClickListener(this);
         btnRed.setOnClickListener(this);
         btnBlue.setOnClickListener(this);
-        btnGreen.setOnClickListener(this);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnrRed :
-                Toast.makeText(this, "Red", Toast.LENGTH_SHORT).show();
-                frameLayout.setBackgroundColor(Color.parseColor("#FD0202"));
-                break;
             case R.id.btnBlue :
-                Toast.makeText(this, "Blue", Toast.LENGTH_SHORT).show();
-                frameLayout.setBackgroundColor(Color.parseColor("#0901FA"));
+                fragment = new FragmentBlue();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frgColor, fragment);
+                fragmentTransaction.commit();
                 break;
             case R.id.btnGreen :
-                Toast.makeText(this, "Green", Toast.LENGTH_SHORT).show();
-                frameLayout.setBackgroundColor(Color.parseColor("#44FA02"));
+                fragment = new FragmentGreen();
+                FragmentManager fragmentManager1 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                fragmentTransaction1.replace(R.id.frgColor, fragment);
+                fragmentTransaction1.commit();
+                break;
+            case R.id.btnrRed :
+                fragment = new FragmentRed();
+                FragmentManager fragmentManager2 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+                fragmentTransaction2.replace(R.id.frgColor, fragment);
+                fragmentTransaction2.commit();
                 break;
         }
     }
